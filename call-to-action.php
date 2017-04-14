@@ -18,14 +18,17 @@ function wpmu_shortcode_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'wpmu_shortcode_enqueue_styles' );
 
-function wpmu_cta_simple() {  ?>
+function wpmu_cta_simple() {
+    ob_start();
+   ?>
 
   <div class="shortcode cta">
+    <?php $email = get_theme_mod( 'wpmu_email_setting', 'Your email address' ); ?>
 
-    Call us at <?php echo get_theme_mod( 'wpmu_email_setting', 'Your email address' ); ?>
-    or email <a href="<?php echo get_theme_mod(
-      'wpmu_email_setting', 'Your email address' ); ?>" >get_theme_mod(
-      'wpmu_email_setting', 'Your email address' ); ?></a>
+        Call us at <?php echo get_theme_mod( 'wpmu_telephone_setting', 'Your telephone number' ); ?>
+         or email <a href="<?php echo $email; ?>">
+				<?php echo $email; ?>
+			</a>
 
     </div>
     <?php
