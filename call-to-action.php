@@ -35,3 +35,31 @@ function wpmu_cta_simple() {
       return ob_get_clean();
   }
     add_shortcode( 'cta-simple', 'wpmu_cta_simple' );
+
+// function for letting the cta box have different info than the header info
+    function wp_cta_atts( $atts, $content = null ) {
+
+      $atts = function func_name($atts) {
+        $atts = extract(shortcode_atts(array('default'=>'values'),$atts));
+
+        // do shortcode actions here
+      }
+      add_shortcode( array(
+        'tel' => 'telephone',
+        'email' => 'email address'
+      ), $atts, 'cta-atts ');
+
+      ob_start();
+      ?>
+
+      <div class="cta">
+            <?php echo 'Call us at ' . $atts['tel'] . ' or email <a href=" ' . $atts[ 'email' ] . ' ">'. $atts[ 'email' ] . '</a>'; ?>
+      </div>
+
+      <?php
+        return ob_get_clean();
+
+
+    }
+
+    add_shortcode( 'cta-atts', 'wp_cta_atts' );

@@ -4,18 +4,25 @@
 	max-width: 50%;
 	margin: 10px auto;
 	padding: 15px 5% 3px 5%;
-	font: arial, sans-serif;
+	font-family: 'Open Sans', sans-serif;
+  border: 1px solid #333;
+  border-radius: 5px;
 	font-size: 1.4rem;
 	text-align: center;
 	line-height: 1.8rem;
-	background-color: #222;
+	background: #8CB6CE;
 	color: #fff;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
 }
 .cta a:link,
 .cta a:visited {
 	text-decoration: none;
+  color: #fff;
 }
 .cta a:hover,
 .cta a:active {
 	text-decoration: underline;
+  color: #fff;
 }
