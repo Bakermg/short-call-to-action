@@ -39,15 +39,10 @@ function wpmu_cta_simple() {
 // function for letting the cta box have different info than the header info
     function wp_cta_atts( $atts, $content = null ) {
 
-      $atts = function func_name($atts) {
-        $atts = extract(shortcode_atts(array('default'=>'values'),$atts));
-
-        // do shortcode actions here
-      }
-      add_shortcode( array(
-        'tel' => 'telephone',
-        'email' => 'email address'
-      ), $atts, 'cta-atts ');
+        $atts = shortcode_atts(array(
+            'tel' => 'telephone',
+            'email' => 'email address'
+        ), $atts, 'cta-atts' );
 
       ob_start();
       ?>
