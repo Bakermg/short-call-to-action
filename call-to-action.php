@@ -10,15 +10,23 @@
  *
  */
 
-function wpmu_shortcode_enqueue_styles() {
+ /*********************************************************************************
+ Enqueue stylesheet
+ *********************************************************************************/
+
+function wpbw_shortcode_enqueue_styles() {
 
 	wp_register_style( 'shortcode_cta_css', plugins_url( 'css/style.css', __FILE__ ) );
     wp_enqueue_style( 'shortcode_cta_css' );
 
 }
-add_action( 'wp_enqueue_scripts', 'wpmu_shortcode_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'wpbw_shortcode_enqueue_styles' );
 
-function wpmu_cta_simple() {
+/*********************************************************************************
+Simple shortcode
+*********************************************************************************/
+
+function wpbw_cta_simple() {
     ob_start();
    ?>
 
@@ -34,27 +42,32 @@ function wpmu_cta_simple() {
     <?php
       return ob_get_clean();
   }
-    add_shortcode( 'cta-simple', 'wpmu_cta_simple' );
+  add_shortcode( 'cta-simple', 'wpbw_cta_simple' );
 
-// function for letting the cta box have different info than the header info
-    function wp_cta_atts( $atts, $content = null ) {
+  /*********************************************************************************
+  Shortcode with attributes
+  *********************************************************************************/
+  function wpbw_cta_atts( $atts, $content = null ) {
 
-        $atts = shortcode_atts(array(
-            'tel' => 'telephone',
-            'email' => 'email address'
-        ), $atts, 'cta-atts' );
+  	$atts = shortcode_atts( array(
+  		'tel' => 'telephone',
+  		'email' => 'email address'
+  	), $atts, 'cta-atts' );
 
-      ob_start();
-      ?>
-
-      <div class="cta">
-            <?php echo 'Call us at ' . $atts['tel'] . ' or email <a href=" ' . $atts[ 'email' ] . ' ">'. $atts[ 'email' ] . '</a>'; ?>
-      </div>
-
-      <?php
-        return ob_get_clean();
+  	ob_start();
+  	?>
 
 
-    }
+  	<div class="cta">
 
-    add_shortcode( 'cta-atts', 'wp_cta_atts' );
+  		<?php echo 'Call us on ' . $atts['tel'] . ' or email <a href="' . $atts['email'] . '">' . $atts['email'] . '</a>'; ?>
+
+  	</div>
+
+  	<?php
+  	return ob_get_clean();
+
+  }
+  add_shortcode( 'cta-atts', 'wpbw_cta_atts' );
+
+?>
